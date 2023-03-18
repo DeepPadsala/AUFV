@@ -97,7 +97,7 @@ const Login = () => {
               <Container>
                 <Typography variant="h4" className="mt-4">Login</Typography>
                 <FormControl>
-                  <InputLabel>User Name</InputLabel>
+                  <InputLabel>User ID</InputLabel>
                   <Input name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </FormControl>
                 <FormControl>

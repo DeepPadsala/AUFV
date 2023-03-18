@@ -118,7 +118,7 @@ const Signup = () => {
               <Container method="POST">
                 <Typography className="mt-2" variant="h4">Signup</Typography>
                 <FormControl>
-                  <InputLabel>User Name</InputLabel>
+                  <InputLabel>User ID</InputLabel>
                   <Input name="email"
                     value={user.email} onChange={handleInputs}
                   />
