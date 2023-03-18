@@ -1,34 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { Box } from '@mui/material'
+import React, { useEffect, useState } from "react";
+import { Box } from "@mui/material";
 import hero1 from "../images/hero.jpg";
 import { useNavigate } from "react-router-dom";
-import moment from 'moment';
-import { Document, Page, View, Text, PDFDownloadLink, Image } from '@react-pdf/renderer';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import moment from "moment";
+import {
+  Document,
+  Page,
+  View,
+  Text,
+  PDFDownloadLink,
+  Image,
+} from "@react-pdf/renderer";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 import hero from "../images/pass.jpg";
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
-import Navbar from './Navbar';
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import Navbar from "./Navbar";
 
 const styles = {
   page: {
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     padding: 50,
   },
   title: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 20,
   },
   subtitle: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 10,
+    marginVertical: 15,
+    marginHorizontal: 20,
   },
   text: {
     fontSize: 12,
@@ -36,50 +44,45 @@ const styles = {
     marginBottom: 10,
   },
   downloadButton: {
-    backgroundColor: '#4CAF50',
-    color: '#ffffff',
-    padding: '10px 20px',
+    backgroundColor: "#4CAF50",
+    color: "#ffffff",
+    padding: "10px 20px",
     borderRadius: 4,
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    display: 'inline-block',
-    margin: '20px 0',
-    transition: 'background-color 0.3s',
+    textDecoration: "none",
+    fontWeight: "bold",
+    textAlign: "center",
+    display: "inline-block",
+    margin: "20px 0",
+    transition: "background-color 0.3s",
   },
   downloadButtonHover: {
-    backgroundColor: '#3e8e41',
+    backgroundColor: "#3e8e41",
   },
   image: {
     marginVertical: 15,
-    marginHorizontal: 125,
-    height: 300,
-    width: 230,
-    justifyContent: 'center',
-    
-  }
+    marginHorizontal: 170,
+    height: 225,
+    width: 160,
+    justifyContent: "center",
+  },
 };
 
-
-
 const Voterid = () => {
-  const [name, setName] = useState('');
-  const [fathername, setFathername] = useState('');
-  const [sex, setSex] = useState('');
-  const [dob, setDob] = useState('');
-  const [address, setAddress] = useState('');
-  const [img, setImg] = useState('');
-
-
+  const [name, setName] = useState("");
+  const [fathername, setFathername] = useState("");
+  const [sex, setSex] = useState("");
+  const [dob, setDob] = useState("");
+  const [address, setAddress] = useState("");
+  const [img, setImg] = useState("");
 
   const navigate = useNavigate();
   const callId = async () => {
     try {
-      const result = await fetch('/voterid', {
-        method: 'GET',
+      const result = await fetch("/voterid", {
+        method: "GET",
         headers: {
-          Accept: 'application/json',
-          "Content-Type": 'application/json'
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         // credentials: 'include'
       });
@@ -88,7 +91,7 @@ const Voterid = () => {
       console.log(data);
       if (data.Error) {
         // window.location.href = '/login';
-        return navigate('/login');
+        return navigate("/login");
       }
       setName(data.name);
       setFathername(data.fathername);
@@ -97,35 +100,36 @@ const Voterid = () => {
       setAddress(data.address);
       setImg(data.img);
 
-
       if (result.status !== 200) {
         const error = new Error(result.error);
         throw error;
       }
-
     } catch (e) {
       console.log(e);
       navigate("/login");
     }
-  }
+  };
 
   useEffect(() => {
     callId();
   }, []);
 
-  const dateBirth = moment(dob).format('DD/MM/YYYY');
+  const dateBirth = moment(dob).format("DD/MM/YYYY");
 
   const MyPdfComponent = () => (
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
+        <Text style={styles.subtitle}>--                      ELECTION COMMISSION OF INDIA                      --</Text>
           <Image style={styles.image} src={img} />
           {/* <Text style={styles.title}>{name}</Text> */}
-          <Text style={styles.subtitle}>NAME                                              :    {name}</Text>
-          <Text style={styles.subtitle}>FATHER'S / HUSBAND'S NAME     :    {fathername}</Text>
-          <Text style={styles.subtitle}>SEX                                                 :    {sex}</Text>
-          <Text style={styles.subtitle}>DATE OF BIRTH                              :    {dateBirth}</Text>
-          <Text style={styles.subtitle}>ADDRESS                                       :    {address}</Text>
+          <Text style={styles.subtitle}>NAME : {name}</Text>
+          <Text style={styles.subtitle}>
+            FATHER'S / HUSBAND'S NAME : {fathername}
+          </Text>
+          <Text style={styles.subtitle}>SEX : {sex}</Text>
+          <Text style={styles.subtitle}>DATE OF BIRTH : {dateBirth}</Text>
+          <Text style={styles.subtitle}>ADDRESS : {address}</Text>
           {/* <Text style={styles.subtitle}>NAME                         :</Text> */}
           {/* <Text style={styles.text}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices libero vel erat tincidunt pretium. Suspendisse potenti. Nunc vitae augue et arcu suscipit volutpat.
@@ -170,7 +174,6 @@ const Voterid = () => {
   //   //   ],
   //   // });
 
-
   //   // Save the PDF
   //   pdf.save('voter-id.pdf');
   // };
@@ -185,39 +188,43 @@ const Voterid = () => {
     fontFamily: "Montserrat, sans-serif",
   };
 
-
   return (
     <>
-    <Navbar />
-<div style={containerStyle}>
+      <Navbar />
+      <div style={containerStyle}>
+        <div className="row mt-4">
+          <div className="col-md-4"></div>
+          <div className="col-md-6">
+            <Card sx={{ maxWidth: 500, boxShadow: 24 }}>
+              <div className="row mt-5">
+                <div className="col-md-1"></div>
 
-    <div className="row mt-4">
-      <div className="col-md-4">
-
-      </div>
-      <div className="col-md-6">
-        <Card sx={{ maxWidth: 500 , boxShadow: 24}}>
-          {/* <CardActionArea> */}
-          <div className="row">
-            <div className="col-md-3">
-
-            </div>
-            <div className="col-md-6">
-              {/* <CardMedia
+                <div className="col-md-10">
+                  <h4>ELECTION COMMISSION OF INDIA</h4>
+                </div>
+                <div className="col-md-1"></div>
+              </div>
+              {/* <CardActionArea> */}
+              <div className="row">
+                <div className="col-md-3"></div>
+                <div className="col-md-6">
+                  {/* <CardMedia
                 component="img"
                 height="345"
                 width="10"
                 image=""
                 alt="Passport Size Photo"
               /> */}
-              <img src={img} className="mt-5" style={{ height: 300, width: 230 }} alt={name} />
-            </div>
-            <div className="col-md-3">
-
-            </div>
-
-          </div>
-          {/* <CardContent>
+                  <img
+                    src={img}
+                    className="mt-4"
+                    style={{ height: 300, width: 230 }}
+                    alt={name}
+                  />
+                </div>
+                <div className="col-md-3"></div>
+              </div>
+              {/* <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               NAME : MYNAME
             </Typography>
@@ -234,141 +241,91 @@ const Voterid = () => {
           </Button>
         </CardActions> */}
 
-          <div className='row mt-4'>
-            <div className="col-md-1">
-
-            </div>
-            <div className="col-md-4">
-              NAME
-            </div>
-            <div className="col-md-2" style={{ textAlign: "center" }}>
-              :
-            </div>
-            <div className="col-md-4">
-              {name}
-            </div>
-            <div className="col-md-1">
-
-            </div>
-
-          </div>
-          <div className='row mt-3' >
-            <div className="col-md-1">
-
-            </div>
-            <div className="col-md-4">
-              FATHER'S / HUSBAND'S NAME
-            </div>
-            <div className="col-md-2" style={{ textAlign: "center" }}>
-              :
-            </div>
-            <div className="col-md-4">
-              {fathername}
-            </div>
-            <div className="col-md-1">
-
-            </div>
-
-          </div>
-          <div className='row mt-3'>
-            <div className="col-md-1">
-
-            </div>
-            <div className="col-md-4">
-              SEX
-            </div>
-            <div className="col-md-2" style={{ textAlign: "center" }}>
-              :
-            </div>
-            <div className="col-md-4">
-              {sex}
-            </div>
-            <div className="col-md-1">
-
-            </div>
-
-          </div>
-          <div className='row mt-3'>
-            <div className="col-md-1">
-
-            </div>
-            <div className="col-md-4">
-              DATE OF BIRTH
-            </div>
-            <div className="col-md-2" style={{ textAlign: "center" }}>
-              :
-            </div>
-            <div className="col-md-4">
-              {dateBirth}
-            </div>
-            <div className="col-md-1">
-
-            </div>
-
-          </div>
-
-          <div className='row mt-3'>
-            <div className="col-md-1">
-
-            </div>
-            <div className="col-md-4">
-              ADDRESS
-            </div>
-            <div className="col-md-2" style={{ textAlign: "center" }}>
-              :
-            </div>
-            <div className="col-md-4">
-              {address}
-            </div>
-            <div className="col-md-1">
-
-            </div>
-
-          </div>
-
-          <div className='row mt-4'>
-            <div className="col-md-4">
-
-            </div>
-            <div className="col-md-4" style={{ textAlign: "center" }}>
-              <div>
-                <PDFDownloadLink document={<MyPdfComponent />} fileName="voterid.pdf">
-                  {({ blob, url, loading, error }) => (
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={styles.downloadButton}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = styles.downloadButtonHover.backgroundColor;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = styles.downloadButton.backgroundColor;
-                      }}
-                    >
-                      {loading ? 'Loading document...' : 'Download VoterID'}
-                    </a>
-                  )}
-                </PDFDownloadLink>
-                {/* <button onClick={generatePdf}>Generate PDF</button> */}
+              <div className="row mt-4">
+                <div className="col-md-1"></div>
+                <div className="col-md-4">NAME</div>
+                <div className="col-md-2" style={{ textAlign: "center" }}>
+                  :
+                </div>
+                <div className="col-md-4">{name}</div>
+                <div className="col-md-1"></div>
               </div>
-            </div>
-            <div className="col-md-4">
+              <div className="row mt-3">
+                <div className="col-md-1"></div>
+                <div className="col-md-4">FATHER'S / HUSBAND'S NAME</div>
+                <div className="col-md-2" style={{ textAlign: "center" }}>
+                  :
+                </div>
+                <div className="col-md-4">{fathername}</div>
+                <div className="col-md-1"></div>
+              </div>
+              <div className="row mt-3">
+                <div className="col-md-1"></div>
+                <div className="col-md-4">SEX</div>
+                <div className="col-md-2" style={{ textAlign: "center" }}>
+                  :
+                </div>
+                <div className="col-md-4">{sex}</div>
+                <div className="col-md-1"></div>
+              </div>
+              <div className="row mt-3">
+                <div className="col-md-1"></div>
+                <div className="col-md-4">DATE OF BIRTH</div>
+                <div className="col-md-2" style={{ textAlign: "center" }}>
+                  :
+                </div>
+                <div className="col-md-4">{dateBirth}</div>
+                <div className="col-md-1"></div>
+              </div>
 
-            </div>
+              <div className="row mt-3">
+                <div className="col-md-1"></div>
+                <div className="col-md-4">ADDRESS</div>
+                <div className="col-md-2" style={{ textAlign: "center" }}>
+                  :
+                </div>
+                <div className="col-md-4">{address}</div>
+                <div className="col-md-1"></div>
+              </div>
+
+              <div className="row mt-4">
+                <div className="col-md-4"></div>
+                <div className="col-md-4" style={{ textAlign: "center" }}>
+                  <div>
+                    <PDFDownloadLink
+                      document={<MyPdfComponent />}
+                      fileName="voterid.pdf"
+                    >
+                      {({ blob, url, loading, error }) => (
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={styles.downloadButton}
+                          onMouseEnter={(e) => {
+                            e.target.style.backgroundColor =
+                              styles.downloadButtonHover.backgroundColor;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.backgroundColor =
+                              styles.downloadButton.backgroundColor;
+                          }}
+                        >
+                          {loading ? "Loading document..." : "Download VoterID"}
+                        </a>
+                      )}
+                    </PDFDownloadLink>
+                    {/* <button onClick={generatePdf}>Generate PDF</button> */}
+                  </div>
+                </div>
+                <div className="col-md-4"></div>
+              </div>
+            </Card>
           </div>
-
-
-
-        </Card>
+          <div className="col-md-2"></div>
+        </div>
       </div>
-      <div className="col-md-2">
-
-      </div>
-    </div>
-
-</div>
-</>
+    </>
 
     // <div className='pt-5 pl-5'>
     //   <div className="container">
@@ -377,7 +334,6 @@ const Voterid = () => {
     //       <div class="box" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: "30%", height: "200px", border: "3px solid #f7a239" }} >
     //         <img src={hero} style={{ width: "100%", height: "100%" }} alt="dp" />
     //       </div>
-
 
     //       <div className="row">
     //         <div className="col-md-12 pl-5 about-info">
@@ -393,7 +349,6 @@ const Voterid = () => {
     //               </div>
     //             </div>
 
-
     //             <div className="row mt-3">
     //               <div className="col-md-6">
     //                 <label>FATHER'S / HUSBAND'S NAME    :</label>
@@ -402,7 +357,6 @@ const Voterid = () => {
     //                 <p >{fathername}</p>
     //               </div>
     //             </div>
-
 
     //             <div className="row mt-3">
     //               <div className="col-md-6">
@@ -413,7 +367,6 @@ const Voterid = () => {
     //               </div>
     //             </div>
 
-
     //             <div className="row mt-3">
     //               <div className="col-md-6">
     //                 <label >DATE OF BIRTH                :</label>
@@ -422,7 +375,6 @@ const Voterid = () => {
     //                 <p>{dateBirth}</p>
     //               </div>
     //             </div>
-
 
     //             <div className="row mt-3">
     //               <div className="col-md-6">
@@ -455,16 +407,13 @@ const Voterid = () => {
     //             </div>
     //           </div>
 
-
     //         </div>
-
 
     //       </div>
     //     </form>
     //   </div>
     // </div>
-  )
-}
+  );
+};
 
-export default Voterid
-
+export default Voterid;
