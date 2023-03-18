@@ -120,17 +120,17 @@ const Voterid = () => {
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-        <Text style={styles.subtitle}>--                      ELECTION COMMISSION OF INDIA                      --</Text>
+          <Text style={styles.subtitle}>--                      ELECTION COMMISSION OF INDIA                      --</Text>
           <Image style={styles.image} src={img} />
           {/* <Text style={styles.title}>{name}</Text> */}
-          <Text style={styles.subtitle}>NAME : {name}</Text>
+          <Text style={styles.subtitle}>NAME                                              :  {name}</Text>
           <Text style={styles.subtitle}>
-            FATHER'S / HUSBAND'S NAME : {fathername}
+          FATHER'S / HUSBAND'S NAME    :  {fathername}
           </Text>
-          <Text style={styles.subtitle}>SEX : {sex}</Text>
-          <Text style={styles.subtitle}>DATE OF BIRTH : {dateBirth}</Text>
-          <Text style={styles.subtitle}>ADDRESS : {address}</Text>
-          {/* <Text style={styles.subtitle}>NAME                         :</Text> */}
+          <Text style={styles.subtitle}>SEX                                                 :  {sex}</Text>
+          <Text style={styles.subtitle}>DATE OF BIRTH                              :  {dateBirth}</Text>
+          <Text style={styles.subtitle}>ADDRESS                                       :  {address}</Text>
+          {/* <Text style={styles.subtitle}>NAME                          :</Text> */}
           {/* <Text style={styles.text}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices libero vel erat tincidunt pretium. Suspendisse potenti. Nunc vitae augue et arcu suscipit volutpat.
           </Text>
