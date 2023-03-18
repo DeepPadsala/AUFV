@@ -11,6 +11,7 @@ import {
   Card,
   Grid
 } from "@mui/material";
+import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
@@ -38,7 +39,9 @@ const Update = () => {
     emailjs.sendForm('', '', form.current, '')
       .then((result) => {
         console.log(result.text);
-        window.alert("Request sent successfully via email. It takes a week to process");
+        // window.alert("Request sent successfully");
+        toast.success("Request sent successfully");
+
         // window.location.href = '/';
         navigate("/");
 

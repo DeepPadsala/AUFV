@@ -12,6 +12,8 @@ import {
     Grid
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+
 import Navbar from "../components/Navbar";
 
 const Container = styled(FormGroup)`
@@ -57,9 +59,12 @@ const UpdateAddress = () => {
         const data = await res.json();
 
         if (res.status === 400 || !data) {
-            window.alert(data.err);
+            // window.alert(data.err);
+            toast.error(data.err);
         } else {
-            window.alert('address updated successfully');
+            // window.alert('address updated successfully');
+            toast.success('address updated successfully');
+
         }
     };
 

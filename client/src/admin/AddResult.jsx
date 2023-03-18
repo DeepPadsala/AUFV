@@ -15,6 +15,8 @@ import {
 } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
+import { toast } from 'react-toastify';
+
 
 const Container = styled(FormGroup)`
   width: 50%;
@@ -60,11 +62,14 @@ const AddResult = () => {
     const data = await res.json();
 
     if (!data.message) {
-      window.alert(data.err);
+      // window.alert(data.err);
+      toast.error(data.err);
       console.log("invalid");
     }
     else {
-      window.alert(data.message);
+      // window.alert(data.message);
+      toast.success(data.message);
+
       console.log("Result Add successfully");
 
       navigate("/home");

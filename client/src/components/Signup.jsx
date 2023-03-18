@@ -118,17 +118,17 @@ const Signup = () => {
               <Container method="POST">
                 <Typography className="mt-2" variant="h4">Signup</Typography>
                 <FormControl>
+                  <InputLabel>User Name</InputLabel>
+                  <Input name="email"
+                    value={user.email} onChange={handleInputs}
+                  />
+                </FormControl>
+                <FormControl>
                   <InputLabel>Name <span style={{ fontSize: "10px" }}> (Give Full Name) </span></InputLabel>
                   <Input
                     name="name"
                     value={user.name}
                     onChange={handleInputs}
-                  />
-                </FormControl>
-                <FormControl>
-                  <InputLabel>Email</InputLabel>
-                  <Input name="email"
-                    value={user.email} onChange={handleInputs}
                   />
                 </FormControl>
                 <FormControl>

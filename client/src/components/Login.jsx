@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../App";
 import { useCookies } from "react-cookie";
+import { toast } from 'react-toastify';
 import Navbar from "./Navbar";
 
 const Container = styled(FormGroup)`
@@ -49,14 +50,17 @@ const Login = () => {
     const data = await res.json();
 
     if (res.status === 400 || !data) {
-      window.alert(data.err);
+      // window.alert(data.err);
+      toast.error(data.err);
     }
     else {
       dispatch({ type: "USER", payload: true })
       console.log("Data : ", data);
       setCookie('jwtoken', data.token, { expires: new Date(Date.now() + 25892000000), path: '/' });
       setCookie('isUser', data.isUser, { expires: new Date(Date.now() + 25892000000), path: '/' });
-      window.alert(data.message);
+      // window.alert(data.message);
+      toast.success(data.message);
+
       // window.location.href='/'; successfully login
       navigate('/home');
     }
@@ -93,7 +97,7 @@ const Login = () => {
               <Container>
                 <Typography variant="h4" className="mt-4">Login</Typography>
                 <FormControl>
-                  <InputLabel>Email</InputLabel>
+                  <InputLabel>User Name</InputLabel>
                   <Input name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </FormControl>
                 <FormControl>
