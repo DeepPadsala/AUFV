@@ -143,6 +143,33 @@ const Voterid = () => {
     </Document>
   );
 
+  // const MyPdfComponent = () => (
+  //   <Document>
+  //     <Page size="A4" style={styles.page}>
+  //       <View>
+  //         <Text style={styles.subtitle}>--                      ELECTION COMMISSION OF INDIA                      --</Text>
+  //         <Image style={styles.image} src={img} />
+  //         {/* <Text style={styles.title}>{name}</Text> */}
+  //         <Text style={styles.subtitle}>NAME                                              :  {name}</Text>
+  //         <Text style={styles.subtitle}>
+  //         FATHER'S / HUSBAND'S NAME    :  {fathername}
+  //         </Text>
+  //         <Text style={styles.subtitle}>SEX                                                 :  {sex}</Text>
+  //         <Text style={styles.subtitle}>DATE OF BIRTH                              :  {dateBirth}</Text>
+  //         <Text style={styles.subtitle}>ADDRESS                                       :  {address}</Text>
+  //         {/* <Text style={styles.subtitle}>NAME                          :</Text> */}
+  //         {/* <Text style={styles.text}>
+  //           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultrices libero vel erat tincidunt pretium. Suspendisse potenti. Nunc vitae augue et arcu suscipit volutpat.
+  //         </Text>
+  //         <Text style={styles.subtitle}>Section 2</Text>
+  //         <Text style={styles.text}>
+  //           Fusce dictum magna nec ex commodo, id rhoncus justo fermentum. Praesent eget ipsum suscipit, rhoncus turpis in, euismod ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
+  //         </Text> */}
+  //       </View>
+  //     </Page>
+  //   </Document>
+  // );
+
   // const MyPdfComponent = () => {
   //   const pdf = new jsPDF();
 

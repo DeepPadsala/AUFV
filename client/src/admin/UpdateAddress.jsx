@@ -29,7 +29,11 @@ const UpdateAddress = () => {
     const form = useRef();
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
+
+    const navigate = useNavigate();
+
     let name, value;
+
     const handleEmail = (e) => {
         // console.log(e);
         name = e.target.name;
@@ -44,6 +48,46 @@ const UpdateAddress = () => {
         setAddress(value);
         // setUser({ ...user, [name]: value });
     }
+
+    const adminAuth = async () => {
+        try {
+          const result = await fetch("/admin", {
+            method: "GET",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            // credentials: 'include'
+          });
+    
+          const data = await result.json();
+          console.log(data);
+          if (data.Error) {
+            // window.location.href = '/login';
+            return navigate("/login");
+          }
+          // setName(data.name);
+          // setFathername(data.fathername);
+          // setSex(data.sex);
+          // setDob(data.dob);
+          // setAddress(data.address);
+          // setImg(data.img);
+    
+          if (result.status !== 200) {
+            const error = new Error(result.error);
+            throw error;
+          }
+        } catch (e) {
+          console.log(e);
+          navigate("/login");
+        }
+      };
+    
+      useEffect(() => {
+        adminAuth();
+      }, []);
+
+
     const add = async (e) => {
         e.preventDefault();
         console.log(email, address);
