@@ -30,13 +30,15 @@ const Update = () => {
   // const publicKey = process.env.REACT_APP_PUBLIC_KEY;
 
   const [email, setemail] = useState('');
+  const [name, setname] = useState('');
+
   const form = useRef();
   const navigate = useNavigate();
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('', '', form.current, '')
+    emailjs.sendForm('service_863nx9o', 'template_vv4tyb8', form.current, 'XKE0T2GHdTejWIlHq')
       .then((result) => {
         console.log(result.text);
         // window.alert("Request sent successfully");
@@ -67,6 +69,7 @@ const Update = () => {
       console.log(data);
 
       setemail(data.email);
+      setname(data.name);
 
       if (data.Error) {
         // window.location.href = '/login';
@@ -117,6 +120,10 @@ const Update = () => {
           <Card sx={{  boxShadow: 24 }}>
             <Container>
               <Typography variant="h4">Request For Update Address In Gujarat</Typography>
+              <FormControl>
+                <lable>Your Name :</lable>
+                <input name="name" className='mt-2' value={name} />
+              </FormControl>
               <FormControl>
                 <lable>Your Email :</lable>
                 <input name="email" className='mt-2' value={email} />

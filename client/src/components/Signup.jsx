@@ -118,7 +118,7 @@ const Signup = () => {
               <Container method="POST">
                 <Typography className="mt-2" variant="h4">Signup</Typography>
                 <FormControl>
-                  <InputLabel>User ID</InputLabel>
+                  <InputLabel>Email</InputLabel>
                   <Input name="email"
                     value={user.email} onChange={handleInputs}
                   />
@@ -186,8 +186,8 @@ const Signup = () => {
                 />
                 {/* </div> */}
 
-                <FormControl>
-                  <InputLabel>Sex</InputLabel>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">Sex</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -200,6 +200,8 @@ const Signup = () => {
                   >
                     <MenuItem value="Male">Male</MenuItem>
                     <MenuItem value="Female">Female</MenuItem>
+                    <MenuItem value="Other">Other</MenuItem>
+
                     {/* <MenuItem value="SDE3">TESTER</MenuItem> */}
                   </Select>
                 </FormControl>
