@@ -182,14 +182,47 @@ const Navbar = () => {
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
+                                    <NavLink className="nav-link" to="/voterid">
+                                        Voter_ID
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
                                     <NavLink className="nav-link" to="/admin/addResult">
                                         Add_Result
                                     </NavLink>
                                 </li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/admin/updateAddress">
-                                        Update_Address
+                                        Update_User_Address
                                     </NavLink>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        ṭo="#"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Update
+                                    </a>
+                                    <div className="dropdown-menu">
+                                        <NavLink className="dropdown-item" to="/address">
+                                            Address
+                                        </NavLink>
+                                        <div className="dropdown-divider"></div>
+                                        <NavLink className="dropdown-item" to="/email">
+                                            Email
+                                        </NavLink>
+                                        <div className="dropdown-divider"></div>
+                                        <NavLink className="dropdown-item" to="/img">
+                                            Passport Size Photo
+                                        </NavLink>
+                                        <div className="dropdown-divider"></div>
+                                        <NavLink className="dropdown-item" to="/password">
+                                            Password
+                                        </NavLink>
+                                    </div>
                                 </li>
 
                                 {undefined === cookies["jwtoken"] ? (
