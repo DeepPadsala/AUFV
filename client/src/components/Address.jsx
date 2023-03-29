@@ -23,7 +23,7 @@ const Container = styled(FormGroup)`
   }
 `
 
-const Update = () => {
+const Address = () => {
 
   // const serviceID = process.env.REACT_APP_SERVICE_ID;
   // const templateID = process.env.REACT_APP_TEMPLATE_ID;
@@ -38,12 +38,12 @@ const Update = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_863nx9o', 'template_vv4tyb8', form.current, 'XKE0T2GHdTejWIlHq')
+    emailjs.sendForm('', '', form.current, '')
       .then((result) => {
         console.log(result.text);
         // window.alert("Request sent successfully");
-        toast.success("Request sent successfully");
-
+        toast.success("Request sent successfully but Further conversation will be through the email you registered. If your email id is not working then update it and then send the request for update addresss.");
+        // window.alert("Request sent successfully but Further conversation will be through the email you registered. If your email id is not working then update it and then send the reqest for update addresss.");
         // window.location.href = '/';
         navigate("/");
 
@@ -56,7 +56,7 @@ const Update = () => {
 
   const callUpdate = async () => {
     try {
-      const result = await fetch('/update', {
+      const result = await fetch('/updateAddress', {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -157,4 +157,4 @@ const Update = () => {
   );
 };
 
-export default Update
+export default Address

@@ -7,7 +7,11 @@ import Signup from "./components/Signup";
 // import Results from "./components/Results";
 import Results from "./components/Results";
 import Home from "./components/Home";
-import Update from "./components/Update";
+import Address from "./components/Address";
+import Email from "./components/Email";
+import Password from "./components/Password";
+import Img from "./components/Img";
+
 import AddResult from "./admin/AddResult";
 import UpdateAddress from "./admin/UpdateAddress";
 // import Logout from "./components/Logout";
@@ -35,7 +39,10 @@ const App = () => {
         <Route path="/voterid" exact element={<Voterid />} />
         {/* <Route path="/results" exact element={<Results />} /> */}
         <Route path="/results" exact element={<Results/>} />
-        <Route path="/update" exact element={<Update />} />
+        <Route path="/address" exact element={<Address />} />
+        <Route path="/email" exact element={<Email />} />
+        <Route path="/password" exact element={<Password />} />
+        <Route path="/img" exact element={<Img />} />
         {/* <Route path="/logout" exact element={<Logout />} /> */}
         <Route path="/admin/addResult" exact element={<AddResult />} />
         <Route path="/admin/updateAddress" exact element={<UpdateAddress />} />
