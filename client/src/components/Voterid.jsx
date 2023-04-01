@@ -137,7 +137,7 @@ const Voterid = () => {
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
       age--;
     }
-  
+    console.log(age);
     return age;
   }
   
@@ -240,7 +240,7 @@ const Voterid = () => {
     backgroundImage: "linear-gradient(to bottom right, #a2deed, #87cefa)",
     fontFamily: "Montserrat, sans-serif",
   };
-  const age = calculateAge(dateBirth);
+  const age = calculateAge(dob);
   if(age>=18){
   return (
     <>
