@@ -142,7 +142,7 @@ const AddResult = () => {
               <form type="submit">
                 <Container method="POST">
                   <Typography className="mt-2" variant="h4">
-                    Add Result{" "}
+                    Delete Result{" "}
                   </Typography>
                   <FormControl>
                     <InputLabel>Year </InputLabel>
