@@ -354,7 +354,7 @@ router.post("/admin/addResult", adminAuth, async (req, res) => {
   }
 
   try {
-    const resultExists = await User.findOne({ year: year });
+    const resultExists = await Result.findOne({ year: year });
     if (resultExists) {
       return res.status(422).json({ err: "year already exists" });
     } else {
@@ -367,6 +367,61 @@ router.post("/admin/addResult", adminAuth, async (req, res) => {
     console.log(err);
   }
 });
+
+
+router.post("/admin/updateResult", adminAuth, async (req, res) => {
+  const { year, pdf } = req.body;
+
+  if (!year || !pdf) {
+    return res.status(422).json({ err: "please enter all required fields" });
+  }
+
+  try {
+    let resultExists = await Result.findOne({ year: year });
+    
+    if (resultExists) {
+      // return res.status(422).json({ err: "year already exists" });
+      resultExists.pdf = pdf;
+      resultExists = await resultExists.save();
+      res.json({ message: "Result updated successfully" });
+    } else {
+      // const result = new Result({ year, pdf });
+      // //pre save middleware
+      // await result.save();
+      res.status(422).json({ err: "Result is not exist you can add from add result" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.post("/admin/deleteResult", adminAuth, async (req, res) => {
+  const {year} = req.body;
+
+  if (!year) {
+    return res.status(422).json({ err: "please enter year" });
+  }
+
+  try {
+    let resultExists = await Result.findOne({ year: year });
+    
+    if (resultExists) {
+      // return res.status(422).json({ err: "year already exists" });
+      
+      resultExists = await resultExists.remove();
+      res.json({ message: "Result deleted successfully" });
+    } else {
+      // const result = new Result({ year, pdf });
+      // //pre save middleware
+      // await result.save();
+      res.status(422).json({ err: "Result is not exist" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 
 // Update Address From Admin
 

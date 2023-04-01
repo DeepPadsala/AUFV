@@ -99,6 +99,7 @@ const Voterid = () => {
       setDob(data.dob);
       setAddress(data.address);
       setImg(data.img);
+      
 
       if (result.status !== 200) {
         const error = new Error(result.error);
@@ -115,6 +116,31 @@ const Voterid = () => {
   }, []);
 
   const dateBirth = moment(dob).format("DD/MM/YYYY");
+  // var today = new Date();
+  // // var today = moment(today1).format("DD/MM/YYYY");
+
+  // var age_now = today.getFullYear() - dob.getFullYear();
+  // var m = today.getMonth() - dob.getMonth();
+
+  // if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) 
+  //   {
+  //       age_now--;
+  //   }
+  //   console.log(age_now);
+
+  function calculateAge(dateOfBirth) {
+    const today = new Date();
+    const birthDate = new Date(dateOfBirth);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+  
+    return age;
+  }
+  
 
   const MyPdfComponent = () => (
     <Document>
@@ -214,7 +240,8 @@ const Voterid = () => {
     backgroundImage: "linear-gradient(to bottom right, #a2deed, #87cefa)",
     fontFamily: "Montserrat, sans-serif",
   };
-
+  const age = calculateAge(dateBirth);
+  if(age>=18){
   return (
     <>
       <Navbar />
@@ -441,6 +468,51 @@ const Voterid = () => {
     //   </div>
     // </div>
   );
+}else{
+  const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh",
+    padding: "2rem",
+    backgroundImage: "linear-gradient(to bottom right, #a2deed, #87cefa)",
+    fontFamily: "Montserrat, sans-serif",
+  };
+
+  // const headingStyle = {
+  //   textAlign: "center",
+  //   color: "#000000",
+  //   fontSize: "4rem",
+  //   textShadow: "2px 2px #fff",
+  //   marginBottom: "3rem",
+  // };
+
+  const paragraphStyle = {
+    lineHeight: "1.5",
+    fontSize: "1.5rem",
+    color: "#fff",
+    textAlign: "justify",
+    margin: "0 auto 2rem",
+    padding: "2rem",
+    borderRadius: "10px",
+    boxShadow: "5px 5px 5px #333",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    maxWidth: "60%",
+  };
+
+  return (
+    <>
+      <Navbar />
+      <div style={containerStyle}>
+        {/* <h1 style={headingStyle}>Municipal Corporation : Election Process</h1> */}
+        <p style={paragraphStyle}>
+          You are not eligible for the voter id because you are not 18 or older.
+        </p>
+        </div>
+    </>
+  )
+}
 };
 
 export default Voterid;

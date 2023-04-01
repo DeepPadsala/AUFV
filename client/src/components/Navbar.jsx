@@ -186,10 +186,35 @@ const Navbar = () => {
                                         Voter_ID
                                     </NavLink>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <NavLink className="nav-link" to="/admin/addResult">
                                         Add_Result
                                     </NavLink>
+                                </li> */}
+                                <li class="nav-item dropdown">
+                                    <a
+                                        class="nav-link dropdown-toggle"
+                                        ṭo="#"
+                                        role="button"
+                                        data-toggle="dropdown"
+                                        aria-expanded="false"
+                                    >
+                                        Result
+                                    </a>
+                                    <div className="dropdown-menu">
+                                        <NavLink className="dropdown-item" to="/admin/addResult">
+                                            Add
+                                        </NavLink>
+                                        <div className="dropdown-divider"></div>
+                                        <NavLink className="dropdown-item" to="/admin/updateResult">
+                                            Update
+                                        </NavLink>
+                                        <div className="dropdown-divider"></div>
+                                        <NavLink className="dropdown-item" to="/admin/deleteResult">
+                                            Delete
+                                        </NavLink>
+                                        
+                                    </div>
                                 </li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to="/admin/updateAddress">

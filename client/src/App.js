@@ -13,6 +13,9 @@ import Password from "./components/Password";
 import Img from "./components/Img";
 
 import AddResult from "./admin/AddResult";
+import UpdateResult from "./admin/UpdateResult";
+import DeleteResult from "./admin/DeleteResult";
+
 import UpdateAddress from "./admin/UpdateAddress";
 // import Logout from "./components/Logout";
 import './App.css';
@@ -45,6 +48,8 @@ const App = () => {
         <Route path="/img" exact element={<Img />} />
         {/* <Route path="/logout" exact element={<Logout />} /> */}
         <Route path="/admin/addResult" exact element={<AddResult />} />
+        <Route path="/admin/updateResult" exact element={<UpdateResult />} />
+        <Route path="/admin/deleteResult" exact element={<DeleteResult />} />
         <Route path="/admin/updateAddress" exact element={<UpdateAddress />} />
 
       </Routes>
